@@ -318,7 +318,7 @@ ggplot() + geom_map(data = world_map, map = world_map, aes(long, lat, map_id = r
 ## Let's make it pretty and add our data
 modern_map <- ggplot() + 
   geom_map(data = world_map, map = world_map, aes(long, lat, map_id = region), 
-           color = "grey80", fill = "grey90", size = 0.1) +
+           color = "grey80", fill = "grey90", linewidth = 0.1) +
   geom_point(data = locality_info, aes(lng, lat), alpha = 0.3, size = 4, colour = "#9B1999") +
   theme_void() + theme(legend.position = "none")
 modern_map
@@ -335,7 +335,7 @@ ggsave(plot = modern_map,
 # 6. Palaeogeographic maps ------------------------------------------------
 
 ## Now let's look at our occurrences on a world map with palaeogeographic rotations
-
+library(geojsonsf)
 ## First, create a new, simplified data object to build our palaeomap:
 paleomap_data <- occ_data %>% 
   select(collection_name, lat, lng, paleolat, paleolng, early_interval, late_interval, max_ma, min_ma) %>% 

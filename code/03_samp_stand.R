@@ -25,10 +25,10 @@
 # 0. Packages used in this script -----------------------------------------
 
 library(deeptime) # for plotting geological time scale
-require(devtools) # developer tools
+#require(devtools) # developer tools
 
 ## The most up-to-date version of iNEXT is still a little glitchy, so we'll use this one for now
-install_version("iNEXT", version = "2.0.20")
+#remotes::install_version("iNEXT", version = "2.0.20")
 library(iNEXT) # diversity metrics and sampling standarisation tools
 
 
@@ -40,7 +40,7 @@ library(iNEXT) # diversity metrics and sampling standarisation tools
 ##    do this job - see notes below for more information
 
 ## Start off by loading your *cleaned* occurrence data (if not already in R form earlier):
-#occ_data <- read_csv("./data/PBDB_pseudos.csv")
+#occ_data <- read.csv("./data/PBDB_pseudos.csv")
 
 ## Pare this down to just the columns we need, while creating a new data object so 
 ##    we don't overwrite the original. We'll use genus level data for these analyses:
@@ -48,7 +48,7 @@ genus_data <- subset(occ_data, select=c(genus, accepted_name, occurrence_no, col
                                         early_interval, late_interval, min_ma, max_ma))
 
 ## And load your data information if its not already in R:
-#intervals <- read_csv("./data/intervals_Car_Tor.csv")
+intervals <- read.csv("./data/intervals_Car_Tor.csv")
 
 
 ## To compute Good's u for each interval, we need to know the frequencies of each taxon (genus):
@@ -103,7 +103,7 @@ citation("iNEXT") # https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041
 ##      = there are 150 taxa in Interval_A, 99 in the first collection, 96 in the second, etc.
 
 ## 1. We've already got our intervals information from earlier, load that now if its not already in R:
-intervals <- read_csv("./data/intervals_Car_Tor.csv")
+intervals <- read.csv("./data/intervals_Car_Tor.csv")
 
 ## 2 + 3. Genus incidence frequencies for each interval
 ## This loop computes incidence frequences for each interval in the intervals data:
@@ -225,7 +225,7 @@ estD_plotting <- bind_rows(estD_output) # binds rows of a list
 estD_plotting$quorum_level <- as.factor(estD_plotting$quorum_level)
 
 ## Create a colour gradient for as many colours as you have quorum levels:
-col_gradient <- scales::seq_gradient_pal("#B7E3B6", "#0A6B09", "Lab")(seq(0, 1, length.out = 5))
+col_gradient <- scales::seq_gradient_pal("#210b2c", "#ae759f", "Lab")(seq(0, 1, length.out = 5))
 
 ## Set your interval boundaries:
 int_boundaries <- c(237.0, 228.0, 208.5, 201.3, 199.3, 190.8, 182.7, 174.1)
@@ -300,7 +300,7 @@ freq_data_sq[[6]] # check the data for the Norian
 ## Using these data, you can plot rank abundances for each interval
 ## Let's look at the Norian:
 barplot(freq_data_sq[["Norian"]], log = "y", # log the y-axis
-        col = "#e94196", border = 0, space = 0,
+        col = "#aed9e0", border = 0, space = 0,
         xlab = "Rank order", ylab = "Abundance")
 
 
@@ -337,15 +337,15 @@ to_plot <- rename(to_plot, "mid_ma" = "intervals.mid_ma")
 
 ## And finally, plot these data!
 squares_plot <- ggplot(to_plot, aes(x = mid_ma, y = squares_list)) +
-  geom_line(colour = "#e94196", linewidth = 1) + 
-  geom_point(colour = "#e94196", size = 4, shape = 16) +
+  geom_line(colour = "#aed9e0", linewidth = 1) + 
+  geom_point(colour = "#aed9e0", size = 4, shape = 16) +
   scale_x_reverse(breaks = int_boundaries) + 
   labs(x = "Time (Ma)", y = "Squares genus diversity") +
   theme_minimal()
 squares_plot # call to plot tab
 
 ## Save a copy of the plot to the plots folder
-ggsave("./plots/squares_gen.pdf", plot = sauares_plot, 
+ggsave("./plots/squares_gen.pdf", plot = squares_plot, 
        width = 20, height = 14, units = "cm")
 
 

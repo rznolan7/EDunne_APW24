@@ -92,7 +92,7 @@ class(corals$growth)
 ## https://paleobiodb.org/classic/displayDownloadGenerator
 
 ## Now let's import it:
-pbdb_data_raw <- read_csv("./data/pbdb_data.csv", skip = 18) 
+pbdb_data_raw <- read_csv("./data/2024_08_07_pdbd_data.csv", skip = 21) 
 
 ## Take a look inside:
 View(pbdb_data_raw)

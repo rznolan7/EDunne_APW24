@@ -72,7 +72,7 @@ proxy_counts <- rename(proxy_counts,
 ## where there is no sampling instead - this gives a more realistic picture
 proxy_counts[proxy_counts == 0] <- NA 
 
-
+proxy_counts
 
 # 1(b). Sampling plots ----------------------------------------------------------
 
@@ -235,14 +235,14 @@ ggsave(plot = lat_plot,
 ## Let's do some simple regression plots:
 
 ## Raw richness vs. collections
-reg_colls <- ggplot(proxy_counts, aes(x=count_taxa, y=count_colls)) + 
+reg_colls <- ggplot(proxy_counts_NC, aes(x=count_taxa, y=count_colls)) + 
   geom_point(shape=17, size = 6, colour = "orange")+
   geom_smooth(method=lm, colour = "orange4", fill = "orange1")  +
   theme_minimal()
 reg_colls
 
 ## Raw richness vs. formations
-reg_forms <- ggplot(proxy_counts, aes(x=count_taxa, y=count_formations)) + 
+reg_forms <- ggplot(proxy_counts_NC, aes(x=count_taxa, y=count_formations)) + 
   geom_point(shape=16, size = 5, colour = "#30C430")+
   geom_smooth(method=lm, colour = "#0A6B09", fill = "#B0ECB0") +
   theme_minimal()

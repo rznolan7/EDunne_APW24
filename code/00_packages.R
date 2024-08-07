@@ -27,6 +27,7 @@ library(rgplates) # palaeogeographic reconstructions
 require(devtools) # developer tools
 
 ## The most up-to-date version of iNEXT is still a little glitchy, so we'll use this one for now
-install_version("iNEXT", version = "2.0.20")
+remotes::install_version("iNEXT", version = "2.0.20")
+
 library(iNEXT) # diversity metrics and sampling standarisation tools
 

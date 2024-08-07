@@ -8,7 +8,7 @@
 #   Emma Dunne (emma.dunne@fau.de)
 # ______________________________________________________
 #
-#   0. R packages to download
+#   0. R packages to download :)
 # 
 # ******************************************************
 
